@@ -1,6 +1,7 @@
-import { Controller, Get, Inject, Param, Post } from '@nestjs/common';
+import { Controller, Get, Inject, Param, Post, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RecordNotFoundException } from '@exceptions/recordnotfound.exception';
+import { Public } from '@/shared/decorators/public.decorator';
 
 @Controller('users')
 export class UsersController {
