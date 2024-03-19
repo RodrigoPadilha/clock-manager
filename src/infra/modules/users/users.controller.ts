@@ -28,6 +28,7 @@ export class UsersController {
   }
 
   @Post('/seed')
+  @Public()
   seed() {
     return this.userService.seed();
   }

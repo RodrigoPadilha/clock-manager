@@ -25,9 +25,10 @@ export class UsersService {
         password: '123'
       }
     ]
-    await this.userRepository.delete({});
     await Promise.all(users.map(async user => {
       user.password = hashPassword(user.password);
+      const _user = await this.userRepository.findOne({ where: { email: user.email } });
+      if(_user) return;
       await this.userRepository.save(user);
     }))
     
