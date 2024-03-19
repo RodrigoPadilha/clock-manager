@@ -30,6 +30,7 @@ export class UsersService {
       user.password = hashPassword(user.password);
       await this.userRepository.save(user);
     }))
+    
   }
 
   async findOne(query: FindOneOptions<User>) {

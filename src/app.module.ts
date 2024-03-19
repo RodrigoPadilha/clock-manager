@@ -1,3 +1,4 @@
+import { RelatorioModule } from './infra/modules/relatorio/relatorio.module';
 import { ModulesModule } from '@modules/modules.module';
 import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
@@ -14,7 +15,7 @@ import { AuthGuard } from './infra/modules/auth/guards/auth.guard';
   ],
   controllers: [],
   providers: [
-    AppService, 
+    AppService,
     {
       provide: APP_GUARD,
       useClass: AuthGuard
