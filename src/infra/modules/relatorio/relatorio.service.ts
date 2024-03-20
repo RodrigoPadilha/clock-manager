@@ -20,8 +20,6 @@ export class RelatorioService {
     let minDate = dayjs(_minDate).startOf('day');
     if (!_minDate) minDate = maxDate.subtract(1, 'month').startOf('day');
 
-    console.log(user_id, minDate.toDate(), maxDate.toDate())
-
     return this.clockRepository.find({
       where: [
         {
@@ -82,24 +80,24 @@ export class RelatorioService {
       </thead>
       <tbody>
         ${records.map(record => {
-          let horasTrabalhadas: { hours: number; minutes: number } | undefined = undefined;
-          if (!record.out) horasTrabalhadas = undefined;
-          else {
-            let diff = dayjs(record.out).diff(dayjs(record.in), 'minute');
-            if (record.intervals) {
-              record.intervals.forEach(interval => {
-                const intervalDiff = dayjs(interval.end).diff(dayjs(interval.start), 'minute');
-                diff -= intervalDiff;
-              })
-            }
-            total += diff;
-            horasTrabalhadas = {
-              hours: Math.floor(diff / 60), // Calcula as horas arredondando para baixo
-              minutes: diff % 60, // Calcula os minutos restantes
-            };
-          }
-          const intervals = record.intervals?.map(interval => {
-            return `<table>
+      let horasTrabalhadas: { hours: number; minutes: number } | undefined = undefined;
+      if (!record.out) horasTrabalhadas = undefined;
+      else {
+        let diff = dayjs(record.out).diff(dayjs(record.in), 'minute');
+        if (record.intervals) {
+          record.intervals.forEach(interval => {
+            const intervalDiff = dayjs(interval.end).diff(dayjs(interval.start), 'minute');
+            diff -= intervalDiff;
+          })
+        }
+        total += diff;
+        horasTrabalhadas = {
+          hours: Math.floor(diff / 60), // Calcula as horas arredondando para baixo
+          minutes: diff % 60, // Calcula os minutos restantes
+        };
+      }
+      const intervals = record.intervals?.map(interval => {
+        return `<table>
             <tbody>
               <tr>
                 <td>${dayjs(interval.start).format('DD/MM/YYYY HH:mm:ss')}</td>
@@ -107,15 +105,15 @@ export class RelatorioService {
               </tr>
             </tbody>
           </table>`
-          }).join('') ?? '-';
+      }).join('') ?? '-';
 
-          return `<tr>
+      return `<tr>
           <td>${dayjs(record.in).format('DD/MM/YYYY HH:mm:ss')}</td>
           <td>${record.out ? dayjs(record.out).format('DD/MM/YYYY HH:mm:ss') : '-'}</td>
           <td>${intervals}</td>
           <td>${horasTrabalhadas ? `${horasTrabalhadas.hours} horas, ${horasTrabalhadas.minutes} minutos` : '-'}</td>
         </tr>`
-        }).join('')}`;
+    }).join('')}`;
 
     report += `<tr>
         <td colspan="3">Total de horas trabalhadas</td>
@@ -126,13 +124,10 @@ export class RelatorioService {
     </body>
     <html>`
 
-    console.log(report);
-    const res = await this.emailAdapter.sendEmail({
+    return this.emailAdapter.sendEmail({
       subject: `Relatório de ponto: ${user?.email}`,
       body: report,
       recipients: ['andre-luiz1997@hotmail.com']
     })
-    console.log(res);
-    // this.emailAdapter.configure();
   }
 }
