@@ -5,13 +5,8 @@ import { AuthModule } from './auth/auth.module';
 import { RelatorioModule } from './relatorio/relatorio.module';
 
 @Module({
-    imports: [
-        ClockModule,
-        UsersModule,
-        AuthModule,
-        RelatorioModule
-    ],
-    controllers: [],
-    providers: [],
+  imports: [ClockModule, UsersModule, AuthModule, RelatorioModule],
+  controllers: [],
+  providers: [],
 })
 export class ModulesModule {}
