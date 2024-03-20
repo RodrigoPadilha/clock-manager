@@ -1,7 +1,6 @@
-import { Body, Controller, Get, Param, Post, Query, Req } from '@nestjs/common';
+import { Controller, Post, Query, Req } from '@nestjs/common';
 import { ClockService } from './clock.service';
 import { CustomRequest } from '@/shared/types/customrequest';
-import { ClockTypes } from '@/domain/clock/IClock';
 
 @Controller('clocks')
 export class ClockController {

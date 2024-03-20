@@ -1,73 +1,36 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Nome do Microsserviço
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Uma breve descrição sobre a funcionalide do Microsserviço.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+![Diagrama de decisão para a lógica de registro dos controles de ponto](./api/diagramaClocks.png)
 
-## Description
+## Instruções para rodar a aplicação
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
+```
+digite aqui
 ```
 
-## Running the app
+## Justificativa do Padrão SAGA escolhido
 
-```bash
-# development
-$ npm run start
+Por ser um cenário de uma saga simples, com poucas operações, realizamos a escolha da **saga coreografada** para o nosso projeto.
+A coreografia permite que cada serviço adapte sua parte da transação com base nos eventos que ocorrem em tempo real. Isso permite uma maior flexibilidade para lidar com casos de uso complexos e cenários de exceção. Os serviços permanecem desacoplados e independentes uns dos outros. Eles não precisam se comunicar diretamente para coordenar a transação, o que reduz a complexidade e facilita a manutenção e escalabilidade do sistema. Como cada serviço pode operar de forma independente, é mais fácil escalar partes específicas do sistema conforme necessário, sem afetar outras partes. Em resumo, o padrão SAGA coreografada oferece uma abordagem mais flexível e distribuída para coordenar transações em um ambiente de microserviços e mensageria, mantendo os serviços desacoplados e independentes uns dos outros. Isso resulta em sistemas mais escaláveis, resilientes e flexíveis.A coreografia permite que cada serviço adapte sua parte da transação com base nos eventos que ocorrem em tempo real. Isso permite uma maior flexibilidade para lidar com casos de uso complexos e cenários de exceção. Os serviços permanecem desacoplados e independentes uns dos outros. Eles não precisam se comunicar diretamente para coordenar a transação, o que reduz a complexidade e facilita a manutenção e escalabilidade do sistema. Como cada serviço pode operar de forma independente, é mais fácil escalar partes específicas do sistema conforme necessário, sem afetar outras partes. Em resumo, o padrão SAGA coreografada oferece uma abordagem mais flexível e distribuída para coordenar transações em um ambiente de microserviços e mensageria, mantendo os serviços desacoplados e independentes uns dos outros. Isso resulta em sistemas mais escaláveis, resilientes e flexíveis.
 
-# watch mode
-$ npm run start:dev
+## Links com os relatórios dos processamentos do OWASP ZAP (antes e após a correção)
 
-# production mode
-$ npm run start:prod
-```
+- [Relatórios](https://drive.google.com/drive/folders/1v-zCWdVGAg8d6_QTHEeZjFVCxI5eCrzO?usp=sharing)
 
-## Test
+## Link com o relatório RIPD do sistema
 
-```bash
-# unit tests
-$ npm run test
+- [RIPD](https://drive.google.com/file/d/1QwHcXojaKHjKTMpnIp0xWjB1zfmLlcNg/view?usp=sharing)
 
-# e2e tests
-$ npm run test:e2e
+## Link para o desenho da arquitetura
 
-# test coverage
-$ npm run test:cov
-```
+- [Desenho da arquitetura](https://drive.google.com/file/d/1NQ8dryi6pV_g6jYlQqqKA2JAvkYT4xku/view?usp=sharing)
 
-## Support
+## Link para o video
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Projeto rodando, inclusive com o padrão SAGA funcionando;
+- Explicação do padrão SAGA escolhido e sua justificativa;
+- Arquitetura da estrutura da nuvem e como a comunicação SAGA está montada.
+- [Apresentação do cluster,infra estrutra e chamada das rotinas pelas APIs na AWS:](https://youtu.be/8MXB1xWqfrE)
+- [Apresentação da aplicação:](https://drive.google.com/drive/folders/1yGdvC0Sts3Vi8ygJf4vMCwODX5S0RhRF?usp=sharing)

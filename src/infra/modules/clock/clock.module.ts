@@ -7,8 +7,11 @@ import { Clock } from './entities/clock.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [AppConfigModule, forwardRef(() => UsersModule),
-    TypeOrmModule.forFeature([Clock])],
+  imports: [
+    AppConfigModule,
+    forwardRef(() => UsersModule),
+    TypeOrmModule.forFeature([Clock])
+  ],
   controllers: [ClockController],
   providers: [ClockService],
 })

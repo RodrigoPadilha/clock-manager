@@ -1,4 +1,7 @@
-import { IEmail } from "./IEmail";
+import { IEmail } from "@/domain/email/IEmail";
+import { NodemailerAdapter } from "../adapters/nodemailer.adapter";
+
+
 
 export interface SMTPOptionsProps {
   host: string;
@@ -23,3 +26,4 @@ export abstract class EmailPort {
   abstract configure(): void;
   abstract sendEmail(email: IEmail): Promise<any>;
 }
+
