@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { AppConfigModule } from 'src/config/config.module';
-import { AppConfigService } from 'src/config/config.service';
+import { AppConfigModule } from '@/infra/config/config.module';
+import { AppConfigService } from '@/infra/config/config.service';
 
 @Injectable()
 export class ClockService {
