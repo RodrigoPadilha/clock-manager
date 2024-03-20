@@ -11,10 +11,10 @@ export function buildDatabaseOptions(): TypeOrmModuleAsyncOptions {
         appConfigService.database;
       return {
         type: 'postgres',
-        host: host,
-        port: port,
-        username: username,
-        password: password,
+        host,
+        port,
+        username,
+        password,
         database: name,
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,

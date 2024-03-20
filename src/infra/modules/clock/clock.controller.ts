@@ -1,22 +1,15 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Req } from '@nestjs/common';
 import { ClockService } from './clock.service';
+import { CustomRequest } from '@/shared/types/customrequest';
+import { ClockTypes } from '@/domain/clock/IClock';
 
-@Controller('v1/clock')
+@Controller('clocks')
 export class ClockController {
   constructor(private readonly clockService: ClockService) {}
 
-  @Get()
-  getClocks(): string {
-    return this.clockService.clockIn();
-  }
-
   @Post()
-  addClock(@Body() body: any): string {
-    const { type } = body;
-
-    if (type === 'In') {
-      return this.clockService.clockIn();
-    }
-    return this.clockService.clockOut();
+  clock(@Req() req: CustomRequest, @Query('interval') isInterval?: boolean) {
+    const user = req.user;
+    return this.clockService.clockIn(user._id, isInterval);
   }
 }
