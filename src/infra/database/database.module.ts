@@ -7,10 +7,12 @@ export function buildDatabaseOptions(): TypeOrmModuleAsyncOptions {
     imports: [AppConfigModule],
     inject: [AppConfigService],
     useFactory: async (appConfigService: AppConfigService) => {
-      const { host, port, username, password, name } =
+      const { type, host, port, username, password, name } =
         appConfigService.database;
+      console.log(appConfigService.database)
+
       return {
-        type: 'postgres',
+        type: type as any,
         host,
         port,
         username,
@@ -18,6 +20,12 @@ export function buildDatabaseOptions(): TypeOrmModuleAsyncOptions {
         database: name,
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
+        ssl: true,
+        extra: {
+          ssl: {
+            rejectUnauthorized: false
+          },
+        },
       };
     },
   };

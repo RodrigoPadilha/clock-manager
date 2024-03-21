@@ -25,7 +25,8 @@ export class ClockService {
     if (!user) throw new InvalidCredentialsException();
     const clock = await this.getOpenClock(user);
     if (!clock) return this.createClock(user);
-    if(isInterval) {
+    console.log('🚀 ~ file: clock.service.ts:29 ~ ClockService ~ clockIn ~ isInterval 🚀 ➡➡', isInterval);
+    if(isInterval === true) {
       if(!clock.intervals) clock.intervals = [];
       const openInterval = clock.intervals?.find(interval => !interval.end);
       if(!openInterval) {
@@ -36,6 +37,11 @@ export class ClockService {
         openInterval.end = dayjs().toDate();
       }
       return this.clockRepository.save(clock);
+    } else {
+      if(clock.intervals) {
+        const openInterval = clock.intervals.find(interval => !interval.end);
+        if(openInterval) openInterval.end = dayjs().toDate();
+      } 
     }
     clock.out = dayjs().toDate();
     return this.clockRepository.save(clock);
