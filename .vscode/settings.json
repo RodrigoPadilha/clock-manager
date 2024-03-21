@@ -1,6 +1,8 @@
 {
   "conventionalCommits.scopes": [
     "users",
-    "auth"
+    "auth",
+    "clocks",
+    "reports"
   ]
 }

@@ -1,4 +1,3 @@
-import { RelatorioModule } from './infra/modules/relatorio/relatorio.module';
 import { ModulesModule } from '@modules/modules.module';
 import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
@@ -11,7 +10,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync(buildDatabaseOptions()),
-
     AppConfigModule,
     ModulesModule,
   ],
@@ -24,4 +22,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }

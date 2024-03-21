@@ -1,7 +1,7 @@
 import { IEmail } from "@/domain/email/IEmail";
-import { EmailPort, IEmailProps, SMTPOptionsProps } from "@/domain/email/IEmail.port";
 import { Transporter, createTransport } from 'nodemailer';
-import { EmailConfigMismatchException } from "../exceptions/emailconfigmismatch.exception";
+import { EmailConfigMismatchException } from "@/infra/exceptions/emailconfigmismatch.exception";
+import { SMTPOptionsProps, IEmailProps, EmailPort } from "@shared/ports/IEmail.port";
 
 const TRANSPORT_PROPS: SMTPOptionsProps = {
   host: process.env.EMAIL_HOST as any,
@@ -51,6 +51,8 @@ export class NodemailerAdapter extends EmailPort {
       });
       
       return res;
-    } catch (error) { }
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
