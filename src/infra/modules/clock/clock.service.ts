@@ -25,7 +25,6 @@ export class ClockService {
     if (!user) throw new InvalidCredentialsException();
     const clock = await this.getOpenClock(user);
     if (!clock) return this.createClock(user);
-    console.log('🚀 ~ file: clock.service.ts:29 ~ ClockService ~ clockIn ~ isInterval 🚀 ➡➡', isInterval);
     if(isInterval === true) {
       if(!clock.intervals) clock.intervals = [];
       const openInterval = clock.intervals?.find(interval => !interval.end);
