@@ -51,6 +51,7 @@ export class RelatorioService {
         _id: user_id
       }
     });
+    if(!user) throw new Error('User not found');
     const minDate = dayjs().startOf('month').format('YYYY-MM-DD');
     const maxDate = dayjs().endOf('day').format('YYYY-MM-DD');
     const records = await this.getRecords(user_id, maxDate, minDate);
@@ -123,11 +124,11 @@ export class RelatorioService {
     </table>
     </body>
     <html>`
-
+    const allowedRecipients = ['andre-luiz1997@hotmail.com', 'bviniciusilva@gmail.com']
     return this.emailAdapter.sendEmail({
       subject: `Relatório de ponto: ${user?.email}`,
       body: report,
-      recipients: ['andre-luiz1997@hotmail.com']
+      recipients: allowedRecipients.includes(user?.email) ? [user?.email] : [allowedRecipients[0]]
     })
   }
 }

@@ -13,11 +13,11 @@ export class UsersService {
   async seed() {
     const users = [
       {
-        email: 'user1@email.com',
+        email: 'andre-luiz1997@hotmail.com',
         password: '123'
       },
       {
-        email: 'user2@email.com',
+        email: 'bviniciusilva@gmail.com',
         password: '123'
       },
       {
