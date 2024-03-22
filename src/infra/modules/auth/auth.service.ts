@@ -16,8 +16,14 @@ export class AuthService {
     const user = await this.usersService.findOne({
       where: {
         email
+      },
+      select: {
+        _id: true,
+        email: true,
+        password: true
       }
     });
+    console.log(user?.password, password);
     if(!user || !comparePassword(password, user.password)) throw new InvalidCredentialsException();
     const { password: _, ...result } = user;
     return {

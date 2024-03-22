@@ -1,26 +1,26 @@
 version: '3.2'
 services:
-#  backend:
-#    build:
-#      context: .
-#      dockerfile: docker/Dockerfile.backend
-#    image: tech_fase_1_backend
-#    container_name: Tech_1_backend  
-#    ports:
-#      - '3000:3000'
-#    volumes:
-#      - .:/app
-#    command: npm run init
-#    environment:
-#        - SERVER_PORT=${SERVER_PORT}
-#        - ENVIRONMENT=${NODE_ENV} # production | development
-#        - DB_HOST=${DB_HOST}
-#        - DB_PORT=${DB_PORT}
-#    networks:
-#      - hackaton_network
-#    depends_on:
-#      db:
-#        condition: service_healthy
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    image: hackaton_backend
+    container_name: Hackaton_backend  
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+    command: npm run start:dev
+    environment:
+        - SERVER_PORT=${SERVER_PORT}
+        - ENVIRONMENT=${NODE_ENV} # production | development
+        - DB_HOST=${DB_HOST}
+        - DB_PORT=${DB_PORT}
+    networks:
+      - hackaton_network
+    depends_on:
+      db:
+        condition: service_healthy
 
   db:
     build:
@@ -54,15 +54,15 @@ networks:
     #    ports:
     #      - '5432:5432'
     #    environment:
-    #      POSTGRES_USER: ${DB_USER}
+    #      POSTGRES_USER: ${DB_USERNAME}
     #      POSTGRES_PASSWORD: ${DB_PASSWORD}
     #      POSTGRES_DB: ${DB_NAME}
-    #      DATABASE_URL: ${DATABASE_URL}
+    #      DB_URL: ${DB_URL}
     #    volumes:
     #      - ./db:/var/lib/postgresql/data
     #    networks:
     #      - hackaton_network
     #    healthcheck:
-    #      test: [ "CMD-SHELL", "pg_isready -d $${DB_NAME} -U $${DB_USER}"]
+    #      test: [ "CMD-SHELL", "pg_isready -d $${DB_NAME} -U $${DB_USERNAME}"]
     #      timeout: 20s
     #      retries: 10
