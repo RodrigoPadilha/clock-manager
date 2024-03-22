@@ -13,6 +13,7 @@ export class AppConfigService {
       port: this.configService.get<number>('database.port') || 5432,
       username: this.configService.get<string>('database.username') || '',
       password: this.configService.get<string>('database.password') || '',
+      type: this.configService.get<string>('database.type') || '',
     };
   }
 }

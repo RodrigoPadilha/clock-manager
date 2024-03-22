@@ -4,4 +4,5 @@ export interface IDatabaseConfig {
   name: string;
   password: string;
   username: string;
+  type: string;
 }
